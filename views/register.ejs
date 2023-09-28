@@ -1,0 +1,32 @@
+<%- include("head") %>
+
+    <div class="container ">
+        <div class="row w-auto min-vh-100 align-items-center justify-content-center">
+            <div class="col-sm-12 w-50 d-flex justify-content-center flex-column shadow-lg rounded-2">
+                <form action="/register" method="post" class="p-4">
+                    <h1 class="h4 text-capitalize">create account</h1>
+                    <hr />
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Username</label>
+                        <input type="text" class="form-control" placeholder="John Doe" name="user" required />
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Email</label>
+                        <input type="email" class="form-control" placeholder="name@example.com" name="email" required />
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary mb-3">Submit</button>
+
+                    <p class="text-center fw-normal">
+                        Have an Account?
+                        <a href="/" class="text-decoration-none text-primary">login now</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>

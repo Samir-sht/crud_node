@@ -1,0 +1,61 @@
+<%- include("head") %>
+
+    <div class="container py-5">
+
+        <div class="row mb-3">
+            <div class="col-sm-12 d-flex justify-content-between align-items-center py-1">
+                <h4 class="text-capitalize">User List</h4>
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Information
+                </button>
+            </div>
+            <hr>
+
+            <%- include("addmodal")%>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 ">
+
+                <div class="table-responsive">
+                    <table class="table caption-top table-bordered">
+
+                        <thead class="table-dark">
+                            <tr class="text-capitalize">
+                                <th scope="col">S.N</th>
+                                <th scope="col">name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">phone number</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>@mdo</td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
+                                            data-bs-target="#example2">
+                                            Edit
+                                            <!-- <a href="#" class="text-decoration-none text-white">Edit</a> -->
+                                        </button>
+
+                                        <a href="/delete" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <%- include("editmodal") %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
