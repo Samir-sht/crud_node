@@ -1,6 +1,7 @@
 const { urlencoded } = require("express");
 const express = require("express");
 const { users } = require("./model/index");
+const { infos } = require("./model/index");
 const app = express();
 const bcrypt = require("bcrypt");
 
@@ -65,9 +66,58 @@ app.post("/register", async (req, res) => {
   res.redirect("/");
 });
 
+//add post
+app.post("/create", async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const number = req.body.number;
+
+  //   console.log(user, email, password);
+  if (!name || !email || !number) {
+    return res.send("Please Fill Up the details");
+  }
+
+  console.log(name, email, number);
+
+  await infos.create({
+    name: name,
+    email: email,
+    phone_number: number,
+  });
+
+  res.redirect("/index");
+});
+
 //index
-app.get("/index", (req, res) => {
-  res.render("index");
+app.get("/index", async (req, res) => {
+  const info = await infos.findAll();
+
+  res.render("index", { info: info });
+});
+
+//delete
+app.get("/delete/:id", async (req, res) => {
+  const ids = req.params.id;
+
+  await infos.destroy({
+    where: {
+      id: ids,
+    },
+  });
+
+  res.redirect("/index");
+});
+
+//edit
+app.get("/edit/:id", async (req, res) => {
+  const id = req.params.id;
+
+  const info = await infos.findAll({
+    where: {
+      id: id,
+    },
+  });
+  res.render("index", { info: info });
 });
 
 app.listen("5000", () => {

@@ -6,26 +6,31 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="#">
+
+
+                <form action="/edit/<%- info[0].id%>" method="post">
 
 
                     <div class="mb-3">
                         <label for="exampleFormControlInput1" class="form-label">Name</label>
-                        <input type="email" class="form-control" name="name" required />
+                        <input type="text" class="form-control" name="name" value="<%- info[0].name %>" required />
                     </div>
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                        <input type="Email" class="form-control" name="email" required />
+                        <input type="Email" class="form-control" name="email" value="<%- info[0].email %>" required />
                     </div>
 
                     <div class="mb-3">
                         <label for="exampleFormControlTextarea1" class="form-label">Phone Number</label>
-                        <input type="number" class="form-control" name="number" required />
+                        <input type="number" class="form-control" name="number" value="<%- info[0].phone_number %>"
+                            required />
                     </div>
                     <button type="submit" class="btn btn-primary mb-3">Submit</button>
 
 
                 </form>
+
+
             </div>
 
         </div>

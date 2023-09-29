@@ -1,61 +1,107 @@
 <%- include("head") %>
 
-    <div class="container py-5">
+    <div class="container-fluid px-auto mx-auto">
+        <div class="row ">
+            <div class="col-sm-2 bg-primary min-vh-100 ">
 
-        <div class="row mb-3">
-            <div class="col-sm-12 d-flex justify-content-between align-items-center py-1">
-                <h4 class="text-capitalize">User List</h4>
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Add Information
-                </button>
+                <div class="px-3 py-3">
+                    <h4 class="text-white fw-bold py-3 ">Blog</h4>
+
+                    <ul class="p-0 ">
+
+                        <li class="d-block mb-2"><a href="#userlist" class="  text-decoration-none text-white  ">
+                                User
+                                information</a></li>
+                        <li class="d-block mb-2 "><a href="/" class="text-decoration-none text-white">logout</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
             </div>
-            <hr>
+            <div class="col-sm-9 px-3 py-3">
+                <div class="row mb-3 ">
 
-            <%- include("addmodal")%>
+                    <div class="col-sm-12 d-flex justify-content-between align-items-center py-1">
+                        <h4 class="text-capitalize mb-0">User information</h4>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                            data-bs-target="#exampleModal">
+                            Add Information
+                        </button>
+                    </div>
+                    <hr>
+
+                    <%- include("addmodal")%>
 
 
-        </div>
+                </div>
 
-        <div class="row">
-            <div class="col-sm-12 ">
+                <div class="row">
 
-                <div class="table-responsive">
-                    <table class="table caption-top table-bordered">
+                    <div class="col-sm-12 " id="userlist">
 
-                        <thead class="table-dark">
-                            <tr class="text-capitalize">
-                                <th scope="col">S.N</th>
-                                <th scope="col">name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">phone number</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>
-                                    <div class="d-flex gap-1">
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal"
-                                            data-bs-target="#example2">
-                                            Edit
-                                            <!-- <a href="#" class="text-decoration-none text-white">Edit</a> -->
-                                        </button>
+                        <% if(info.length==0){ %>
+                            <h4>No data available</h4>
 
-                                        <a href="/delete" class="btn btn-danger">Delete</a>
-                                    </div>
-                                </td>
-                            </tr>
+                            <% }else{ %>
+                                <div class="table-responsive">
+                                    <table class="table caption-top table-bordered">
 
-                            <%- include("editmodal") %>
+                                        <thead class="table-dark">
+                                            <tr class="text-capitalize">
+                                                <th scope="col">S.N</th>
+                                                <th scope="col">name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">phone number</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% info.length> 0 && info.forEach((info)=>{ %>
 
-                        </tbody>
-                    </table>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <%- info.id %>
+                                                    </th>
+                                                    <td>
+                                                        <%- info.name %>
+                                                    </td>
+                                                    <td>
+                                                        <%- info.email %>
+                                                    </td>
+                                                    <td>
+                                                        <%- info.phone_number %>
+                                                    </td>
+                                                    <td>
+                                                        <div class="d-flex gap-1">
+
+                                                            <a href="/edit/<%- info.id %>"
+                                                                class="btn btn-success text-decoration-none text-white"
+                                                                data-bs-toggle="modal" data-bs-target="#example2"
+                                                                data-bs-toggle="modal"
+                                                                data-bs-target="#example2">Edit</a>
+
+
+                                                            <a href="/delete/<%- info.id%>"
+                                                                class="btn btn-danger">Delete</a>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+                                                <%- include("editmodal") %>
+
+                                        </tbody>
+
+                                        <% }) %>
+
+                                            <% } %>
+                                    </table>
+                                </div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
