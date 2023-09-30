@@ -110,14 +110,37 @@ app.get("/delete/:id", async (req, res) => {
 
 //edit
 app.get("/edit/:id", async (req, res) => {
-  const id = req.params.id;
+  const ids = req.params.id;
 
   const info = await infos.findAll({
     where: {
-      id: id,
+      id: ids,
     },
   });
-  res.render("index", { info: info });
+
+  res.render("editmodal", { info: info });
+});
+
+app.post("/edit/:id", async (req, res) => {
+  const ids = req.params.id;
+
+  const name = req.body.name;
+  const email = req.body.email;
+  const number = req.body.number;
+
+  await infos.update(
+    {
+      name: name,
+      email: email,
+      phone_number: number,
+    },
+    {
+      where: {
+        id: ids,
+      },
+    }
+  );
+  res.redirect("/index");
 });
 
 app.listen("5000", () => {
